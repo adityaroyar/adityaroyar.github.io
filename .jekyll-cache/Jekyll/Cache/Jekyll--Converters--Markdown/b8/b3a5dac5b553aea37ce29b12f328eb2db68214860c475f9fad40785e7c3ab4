@@ -1,0 +1,95 @@
+I"�<h1 id="gmail-data-analysis-and-visualization">Gmail Data Analysis and Visualization</h1>
+
+<h2 id="python-libraries-used">Python Libraries used</h2>
+<ol>
+  <li>NumPy</li>
+  <li>Pandas</li>
+  <li>Matplotlib</li>
+  <li>Mailbox</li>
+</ol>
+
+<h2 id="goal">Goal</h2>
+<p><img src="../img/posts/gmail-analysis/gmail-background.jpg" alt="Gmail" /></p>
+<ul>
+  <li>Answer the following questions -
+    <ol>
+      <li>How many emails did I send during a given timeframe?</li>
+      <li>At what times of the day do I send and receive emails with Gmail?</li>
+      <li>What is the distribution of emails received per day?</li>
+      <li>What is the distribution of emails received per hour?</li>
+      <li>Which is my most active day in terms of emails?</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="dataset">Dataset</h2>
+<p>The data was obtained from <a href="https://takeout.google.com/settings/takeout">Google takeout</a>. Due to privacy reasons, the dataset is not included in this repository. After downloading the dataset containing all the emails, the compressed file was unzipped to obtain file with an <code class="language-plaintext highlighter-rouge">.mbox</code> extension. In order to read this, the <a href="https://pypi.org/project/mailbox/#description">mailbox library</a> was used. The following fields were extracted from the mailbox object -</p>
+<ol>
+  <li>Subject</li>
+  <li>From</li>
+  <li>Date</li>
+  <li>To</li>
+  <li>Label - Gmail treats labels as folders for the purposes of IMAP. <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></li>
+  <li>Thread - Gmail provides a thread ID to associate groups of messages in the same manner as in the Gmail web interface <sup id="fnref:1:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></li>
+</ol>
+
+<h2 id="steps-prior-to-analysis">Steps prior to analysis</h2>
+<ol>
+  <li>Data cleaning - 
+  1.1 Consisted of removing <code class="language-plaintext highlighter-rouge">NaN</code>
+  1.2 Conversion of dataframe objects to a more suitable data format
+  1.3 Extraction of email ids from the <code class="language-plaintext highlighter-rouge">from</code> field using regular expressions
+  1.4 Dropping unneccessary columns</li>
+  <li>Refactoring timezones -
+  2.1 Done using <code class="language-plaintext highlighter-rouge">pytz</code> and <code class="language-plaintext highlighter-rouge">pandas</code></li>
+</ol>
+
+<h2 id="analysis">Analysis</h2>
+
+<h3 id="1-number-of-emails">1. Number of Emails</h3>
+<ul>
+  <li>Timeframe considered -
+    <ul>
+      <li>Start of dataset:  Mon 12 Sep 2011 04:12 AM</li>
+      <li>End of dataset:  Mon 28 Jun 2021 08:53 PM</li>
+    </ul>
+  </li>
+  <li>How many emails were received and sent?
+    <ul>
+      <li>Received = 62180</li>
+      <li>Sent = 1172</li>
+      <li>Here is a scatter plot for the distribution of emails sent and received per time of day
+<img src="..\img\posts\gmail-analysis\mails_received_per_tod.png" alt="Fig 1. Mails received and sent as per time of day" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-average-emails-per-day-and-per-hour">2. Average Emails per day and per hour</h3>
+<ul>
+  <li>Here is a triple plot for time of the day versus year for all the emails within a given timeframe</li>
+</ul>
+
+<p><img src="img\posts\gmail-analysis\avg_mails_per_day.png" alt="Fig 2. Plot for time of the day versus year for all the emails " /></p>
+
+<h3 id="3-emails-as-per-days-of-the-week">3. Emails as per days of the week</h3>
+<ul>
+  <li>As seen by the bar chart, most of the outgoing emails were sent on Thursday and most of the incoming emails were received on Friday</li>
+</ul>
+
+<p><img src="..\img\posts\gmail-analysis\fraction_of_weekly_mails_per_day.png" alt="Fig 3. Fraction of Weekly Mails Per Day" /></p>
+
+<h3 id="4-most-active-time-of-day-for-email-communication">4. Most active time of day for Email Communication</h3>
+<ul>
+  <li>From the graph, we can see the most active hours for my email communication</li>
+</ul>
+
+<p><img src="..\img\posts\gmail-analysis\fraction_of_mails_weekly_per_tod.png" alt="Fig 4. Active Hours for Email Communication" /></p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Source: <a href="https://developers.google.com/gmail/imap/imap-extensions">Gmail for developers</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+  </ol>
+</div>
+:ET
