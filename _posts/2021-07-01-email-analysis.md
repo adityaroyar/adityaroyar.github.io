@@ -2,7 +2,7 @@
 layout: post
 title: "Gmail Analysis"
 subtitle: "Analysing emails received over the past ten years"
-background: ''
+background: '/img/posts/gmail-analysis/gmail-banner.jpg'
 ---
 
 ## Motivation
@@ -33,13 +33,11 @@ The data was obtained from [Google takeout](https://takeout.google.com/settings/
   6. Thread - Gmail provides a thread ID to associate groups of messages in the same manner as in the Gmail web interface [^1]
 
 ## Steps prior to analysis
-1. Data cleaning - 
-  1.1 Consisted of removing `NaN`
-  1.2 Conversion of dataframe objects to a more suitable data format
-  1.3 Extraction of email ids from the `from` field using regular expressions
-  1.4 Dropping unneccessary columns
-2. Refactoring timezones -
-  2.1 Done using `pytz` and `pandas`
+  1. Consisted of removing `NaN`
+  2. Conversion of dataframe objects to a more suitable data format
+  3. Extraction of email ids from the `from` field using regular expressions
+  4. Dropping unneccessary columns
+  5. Refactoring timezones using `pytz` and `pandas`
 
 ## Analysis
 
